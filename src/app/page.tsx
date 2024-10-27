@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Test from "@/features/Test";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
@@ -19,8 +20,10 @@ export default function Home() {
         <Button variant='outline' size='lg'>Button #3</Button>
         <Button variant='secondary' size='sm'>Button #4</Button>
         <Button variant='ghost' size='lg'>Button #5</Button>
-        <Button variant='mystery'>Button #6</Button>
+        <Button variant='mystery' size='xs'>Button #6</Button>
       </div>
+
+      <Input />
       </div>
     </div>
   )
