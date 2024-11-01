@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Test from "@/features/Test";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,6 +13,8 @@ export default function Home() {
       <div className="flex flex-col mx-auto items-center">
         <div className="">POT ON TIME</div>
         <Test />
+        <Button><Link href='/sign-in'>Sign In</Link></Button>
+        <Button><Link href='/sign-up'>Sign Up</Link></Button>
       </div>
 
       <div className="flex items-center gap-4 p-4">

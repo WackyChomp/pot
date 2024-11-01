@@ -1,16 +1,40 @@
 import Image from 'next/image'
+import Link from 'next/link';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 
 import { DottedSeparator } from '@/components/dotted-separator'
 
 import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
 
+const formSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8, "Minium 8 characters"),
+})
+
 export const SignInCard = () =>{
   const geminiIcon = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNyb3NzIj48cGF0aCBkPSJNMTEgMmEyIDIgMCAwIDAtMiAydjVINGEyIDIgMCAwIDAtMiAydjJjMCAxLjEuOSAyIDIgMmg1djVjMCAxLjEuOSAyIDIgMmgyYTIgMiAwIDAgMCAyLTJ2LTVoNWEyIDIgMCAwIDAgMi0ydi0yYTIgMiAwIDAgMC0yLTJoLTVWNGEyIDIgMCAwIDAtMi0yaC0yeiIvPjwvc3ZnPg==`
+
+  const form = useForm<z.infer<typeof formSchema>> ({
+    resolver: zodResolver(formSchema),
+    defaultValues:{
+      email: "",
+      password: "",
+    }
+  })
+
+  const onSubmit = (values: z.infer<typeof formSchema>) =>{
+    console.log({ values });
+  }
 
   return(
     <Card className="w-full h-full md:w-[490px] border-none shadow-none">
@@ -18,6 +42,10 @@ export const SignInCard = () =>{
         <CardTitle className='text-3xl'>
           Welcome To HERE Domain!!!
         </CardTitle>
+        <CardDescription className='bg-slate-950 rounded-md p-2'>
+          Need an account? {" "}          
+          <Link href='/sign-up' className='text-yellow-400 animate-pulse'>Sign Up</Link>
+        </CardDescription>
       </CardHeader>
 
       <div className="px-12">
@@ -25,29 +53,46 @@ export const SignInCard = () =>{
       </div>
       
       <CardContent className="p-12">
-        <form className='space-y-4'>
-          <Input 
-            required
-            type='email'
-            value={''}
-            onChange={() => {}}
-            placeholder='Enter your email address'
-            disabled={false}
+        <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+          <FormField
+            name='email'
+            control={form.control}
+            render={({ field }) =>(
+              <FormItem>
+                <FormControl>                  
+                  <Input 
+                    {...field}
+                    type='email'
+                    placeholder='Enter your email address'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-          <Input 
-            required
-            type='password'
-            value={''}
-            onChange={() => {}}
-            placeholder='Enter your password'
-            disabled={false}
-            min={8}
-            max={256}
+          <FormField
+            name='password'
+            control={form.control}
+            render={({ field }) =>(
+              <FormItem>
+                <FormControl>                  
+                  <Input 
+                    {...field}
+                    type='password'
+                    placeholder='Enter your password'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
+
           <Button disabled={false} variant='mystery' size='lg' className='w-full'>
             Login
           </Button>
         </form>
+        </Form>
       </CardContent>
 
       <div className="px-7">
