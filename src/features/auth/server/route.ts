@@ -1,16 +1,14 @@
 import { Hono } from "hono";
 import { z } from 'zod';
 import { zValidator } from '@hono/zod-validator';     // middleware
+import { loginSchema } from "../schemas";
 
 const app = new Hono()
   .post(
     '/login', 
-    zValidator('json', z.object({
-      email: z.string().email(),
-      password: z.string(),
-    })), 
+    zValidator('json', loginSchema), 
     (c) => {
-      return c.json({ success: 'this is actually working <(;o_o;)>'})
+      return c.json({ success: 'login is actually working <(;o_o;)>'})
     }
   )
 
