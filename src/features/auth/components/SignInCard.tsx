@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { DottedSeparator } from '@/components/dotted-separator'
 
 import { loginSchema } from '../schemas';
+import { useLogin } from '../api/use-login'
 
 import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
@@ -21,6 +22,8 @@ import { FaGithub } from 'react-icons/fa'
 
 export const SignInCard = () =>{
   const geminiIcon = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNyb3NzIj48cGF0aCBkPSJNMTEgMmEyIDIgMCAwIDAtMiAydjVINGEyIDIgMCAwIDAtMiAydjJjMCAxLjEuOSAyIDIgMmg1djVjMCAxLjEuOSAyIDIgMmgyYTIgMiAwIDAgMCAyLTJ2LTVoNWEyIDIgMCAwIDAgMi0ydi0yYTIgMiAwIDAgMC0yLTJoLTVWNGEyIDIgMCAwIDAtMi0yaC0yeiIvPjwvc3ZnPg==`
+
+  const { mutate } = useLogin();
 
   const form = useForm<z.infer<typeof loginSchema>> ({
     resolver: zodResolver(loginSchema),
@@ -32,6 +35,7 @@ export const SignInCard = () =>{
 
   const onSubmit = (values: z.infer<typeof loginSchema>) =>{
     console.log({ values });
+    mutate({ json: values })
   }
 
   return(

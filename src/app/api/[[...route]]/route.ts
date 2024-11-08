@@ -24,3 +24,5 @@ const routes = app
 
 export const GET = handle(app);
 
+
+export type AppType = typeof routes;
