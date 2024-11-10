@@ -13,6 +13,9 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 
 import { DottedSeparator } from '@/components/dotted-separator'
 
+import { registerSchema } from '../schemas';
+import { useRegister } from '../api/use-register';
+
 import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
 
@@ -25,8 +28,10 @@ const formSchema = z.object({
 export const SignUpCard = () =>{
   const geminiIcon = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNyb3NzIj48cGF0aCBkPSJNMTEgMmEyIDIgMCAwIDAtMiAydjVINGEyIDIgMCAwIDAtMiAydjJjMCAxLjEuOSAyIDIgMmg1djVjMCAxLjEuOSAyIDIgMmgyYTIgMiAwIDAgMCAyLTJ2LTVoNWEyIDIgMCAwIDAgMi0ydi0yYTIgMiAwIDAgMC0yLTJoLTVWNGEyIDIgMCAwIDAtMi0yaC0yeiIvPjwvc3ZnPg==`
 
-  const form = useForm<z.infer<typeof formSchema>> ({
-    resolver: zodResolver(formSchema),
+  const { mutate } = useRegister();
+
+  const form = useForm<z.infer<typeof registerSchema>> ({
+    resolver: zodResolver(registerSchema),
     defaultValues:{
       name: "",
       email: "",
@@ -34,8 +39,9 @@ export const SignUpCard = () =>{
     }
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) =>{
+  const onSubmit = (values: z.infer<typeof registerSchema>) =>{
     console.log({ values });
+    mutate({ json: values })
   }
 
   return(
