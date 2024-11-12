@@ -4,7 +4,11 @@ import Test from "@/features/Test";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
+import { createAdminClient } from "@/lib/appwrite";
+
 export default function Home() {
+  console.log(createAdminClient, 'why are you here?');      // testing to see this in console means server-only isn't working in appwrite.ts
+
   return (
     <div className="bg-blue-400 flex justify-center">
 

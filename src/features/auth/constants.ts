@@ -1,0 +1,1 @@
+export const AUTH_COOKIE = 'cwa-project-pot-session'
