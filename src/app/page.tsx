@@ -4,28 +4,30 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import Test from "@/features/Test";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
-//import { createAdminClient } from "@/lib/appwrite";
+import Test from "@/features/Test";
+import { UserButton } from "@/features/auth/components/UserButton";
+
+//import { createAdminClient } from "@/lib/appwrite";          // testing to see this in console means server-only isn't working in appwrite.ts
 import { useCurrent } from "@/features/auth/api/use-current";
 import { useLogout } from "@/features/auth/api/use-logout";
 
 export default function Home() {
   //console.log(createAdminClient, 'why are you here?');      // testing to see this in console means server-only isn't working in appwrite.ts
 
+  {/*
   const router = useRouter();
   const { data, isLoading } = useCurrent();
   const { mutate } = useLogout();
 
-  useEffect(() => {
+  useEffect(() => {             // logging out: useCurrent becomes null and this triggers
     if (!data && !isLoading){
       router.push('/sign-in')
     }
-    
   }, [data])
-  
+  */}
 
   return (
     <div className="bg-blue-400 flex justify-center">
@@ -50,7 +52,9 @@ export default function Home() {
 
       <Input />
 
-      <Button onClick={() => mutate()}>Logout Now</Button>
+      <Button onClick={() => mutate()}>Logout Now</Button>    {/* uses mutate and useEffect , need to uncomment above */}
+
+      <UserButton />
       </div>
     </div>
   )
