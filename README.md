@@ -33,6 +33,8 @@ Here are some frameworks/libraries used in this project:
 * [![Tailwind][Tailwind.css]][Tailwind-url]
 * [![React][React.js]][React-url]
 * [![Next][Next.js]][Next-url]
+* [![Appwrite][Appwrite]][Appwrite-url]
+* [![Hono][Hono]][Hono-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -53,6 +55,7 @@ List of incredible resources that give you inspiration or point you into a direc
 * [Shadcn/ui](https://ui.shadcn.com/docs) - Customizable UI components
 * [Tailwind CSS](https://tailwindcss.com/docs/installation) - CSS framework
 * [Appwrite](https://appwrite.io/) - Open-source scalable backend
+* [Hono](https://hono.dev/) - Lightweight API routing web framework 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,3 +69,8 @@ List of incredible resources that give you inspiration or point you into a direc
 [React-url]: https://reactjs.org/
 [Tailwind.css]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 [Tailwind-url]: https://tailwindcss.com/
+
+[Appwrite]: https://img.shields.io/badge/appwrite-292929?style=for-the-badge&logo=appwrite&logoColor=DD0B78
+[Appwrite-url]: (https://appwrite.io/)
+[Hono]: https://img.shields.io/badge/hono-bcbcbc?style=for-the-badge&logo=hono&logoColor=orange
+[Hono-url]: https://hono.dev/

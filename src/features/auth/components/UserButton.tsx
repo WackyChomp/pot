@@ -4,6 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 import { DottedSeparator } from "@/components/dotted-separator"
+
+import { LogOut } from "lucide-react"
+
 import { useLogout } from "../api/use-logout"
 import { useCurrent } from "../api/use-current"
 
@@ -12,6 +15,7 @@ type Props = {}
 
 export const UserButton = (props: Props) => {
   const { data: user, isLoading } = useCurrent();
+  const { mutate: logout } = useLogout();
 
   if(isLoading){
     return (
@@ -49,12 +53,23 @@ export const UserButton = (props: Props) => {
               {avatarFallback}
             </AvatarFallback>
           </Avatar>
-          <div>
-            <p>
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-sm font-medium text-orange-600">
               {name || 'user'}
             </p>
+            <p className="text-sm text-blue-600">{email}</p>
           </div>
         </div>
+
+        <DottedSeparator className="mb-4" />
+
+        <DropdownMenuItem 
+          className="bg-red-200 h-12 flex items-center justify-center text-orange-600 font-medium cursor-pointer"
+          onClick={() => logout()}
+        >
+          <LogOut className='size-6 mr-4'/>
+        </DropdownMenuItem>
+
       </DropdownMenuContent>
     </DropdownMenu>
       

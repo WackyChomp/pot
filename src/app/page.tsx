@@ -30,7 +30,7 @@ export default function Home() {
   */}
 
   return (
-    <div className="bg-blue-400 flex justify-center">
+    <div className="bg-blue-500 flex justify-center">
 
       <div className="bg-green-600 flex flex-col">
 
