@@ -12,7 +12,7 @@ import { getCurrent } from "@/features/auth/actions";
 export default async function Home() {
   //console.log(createAdminClient, 'why are you here?');      // testing to see this in console means server-only isn't working in appwrite.ts
 
-  const user = getCurrent();
+  const user = await getCurrent();
   if (!user) redirect('/sign-in')
 
   return (
