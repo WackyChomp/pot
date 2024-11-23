@@ -16,21 +16,11 @@ export default async function Home() {
   if (!user) redirect('/sign-in')
 
   return (
-    <div className="bg-blue-500 flex justify-center">
+    <div className="bg-blue-500">
 
-      <div className="bg-green-600 flex flex-col">
+      <p className="text-red-800 text-4xl font-extrabold flex justify-center">This is the home page</p>
 
-      <div className="flex flex-col mx-auto items-center gap-2">
-        <div className="">POT ON TIME</div>
-        <Test />
-        <div className="flex gap-3">
-          <Button><Link href='/sign-in'>Sign In</Link></Button>
-          <Button><Link href='/sign-up'>Sign Up</Link></Button>
-        </div>
-      </div>
-
-      <UserButton />
-      </div>
+      <Test />
     </div>
   )
 }

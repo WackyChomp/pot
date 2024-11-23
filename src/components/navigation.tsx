@@ -2,6 +2,7 @@
 import React from 'react'
 
 import Link from 'next/link'
+import { GoCheckCircle, GoCheckCircleFill, GoHome, GoHomeFill } from 'react-icons/go';
 import { SettingsIcon, UsersIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -12,14 +13,14 @@ const routes = [
   {
     label: 'Home',
     href:'/',
-    icon: '',
-    activeIcon: '',
+    icon: GoHome,
+    activeIcon: GoHomeFill,
   },
   {
     label: 'My Tasks',
     href:'/tasks',
-    icon: '',
-    activeIcon: '',
+    icon: GoCheckCircle,
+    activeIcon: GoCheckCircleFill,
   },
   {
     label: 'Settings',
@@ -33,12 +34,18 @@ const routes = [
     icon: UsersIcon,
     activeIcon: UsersIcon,
   },
-  {
-    label: '???',
-    href:'',
-    icon: '',
-    activeIcon: '',
-  },
+  // {
+  //   label: 'Secret',
+  //   href:'/secret',
+  //   icon: UsersIcon,
+  //   activeIcon: UsersIcon,
+  // },
+  // {
+  //   label: '???',
+  //   href:'',
+  //   icon: '',
+  //   activeIcon: '',
+  // },
 ]
 
 export const Navigation = (props: Props) => {
@@ -54,7 +61,7 @@ export const Navigation = (props: Props) => {
               'flex items-center gap-2.5 p-2.5 rounded-md font-medium hover:text-yellow-500 transition text-black',
               isActive && 'bg-red-400 shadow-sm hover:opacity-100 text-red-600'
             )}>
-              {/* <Icon className='size-5 text-neutral-500' /> */}
+              <Icon className='size-5 text-neutral-500' />
               {item.label}
             </div>
           </Link>
