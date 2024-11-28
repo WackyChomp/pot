@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createWorkspaceSchema } from "../schemas";
 
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DottedSeparator } from '@/components/dotted-separator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl,FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useCreateWorkspace } from '../api/use-create-workspace';
 
 
 interface CreateWorkspaceFormProps {
@@ -16,6 +18,8 @@ interface CreateWorkspaceFormProps {
 };
 
 export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
+  const { mutate, isPending } = useCreateWorkspace();
+
   const form = useForm<z.infer<typeof createWorkspaceSchema>>({
     resolver: zodResolver(createWorkspaceSchema),
     defaultValues: {
@@ -25,10 +29,11 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
 
   const onSubmit = (values: z.infer<typeof createWorkspaceSchema>) => {
     console.log({ values });
+    mutate({ json: values});
   };
 
   return (
-    <Card className='bg-red-500 w-full h-full border-none shadow-none'>
+    <Card className='bg-red-200 w-full h-full border-none shadow-none'>
       <CardHeader className="flex p-10">
         <CardTitle className="text-xl font-bold">
           Create a new workspace
@@ -39,8 +44,8 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
       </div>
       <CardContent className="p-9">
         <Form {...form}>
-          <div className="flex flex-col gap-y-5">
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-y-5">
               <FormField
                 control={form.control}
                 name='name'
@@ -49,6 +54,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                     <FormLabel>Workspace Name</FormLabel>
                     <FormControl>
                       <Input 
+                        {...field}
                         placeholder='Enter workspace name'
                       />
                     </FormControl>
@@ -56,8 +62,29 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                   </FormItem>
                 )}
               />
-            </form>
-          </div>
+            </div>
+
+            <DottedSeparator className='py-10'/>
+
+            <div className="flex items-center justify-between">
+              <Button
+                type='submit'
+                size='lg'
+                disabled={isPending}
+              >
+                Create Workspace
+              </Button>
+              <Button
+                type='button'
+                size='lg'
+                variant='secondary'
+                onClick={onCancel}
+                disabled={isPending}
+              >
+                Cancel
+              </Button>
+            </div>
+          </form>
         </Form>
       </CardContent>
     </Card>
