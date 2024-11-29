@@ -3,6 +3,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferResponseType } from 'hono';
 import { client } from '@/lib/rpc';
 
+import { toast } from 'sonner';
+
 // logging out will force retetch of current user and it should appear undefined (data deleted and redirects to sign-in page)
 
 type ResponseType = InferResponseType<typeof client.api.auth.logout["$post"]>
@@ -17,11 +19,20 @@ export const useLogout = () =>{
   >({
     mutationFn: async () => {
       const response = await client.api.auth.logout['$post']();
+
+      if(!response.ok){
+        throw new Error('Failed to logout')
+      }
+
       return await response.json();
     },
     onSuccess: () => {
+      toast.success('Logged out')
       router.refresh();       // automatically reload
       queryClient.invalidateQueries({ queryKey:['current'] });
+    },
+    onError: () => {
+      toast.error('Failed to log out somehow ¯\_(ツ)_/¯')
     }
   })
 
