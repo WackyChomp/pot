@@ -1,6 +1,8 @@
 'use client'
 
 import { z } from 'zod'
+import Image from 'next/image';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createWorkspaceSchema } from "../schemas";
@@ -8,9 +10,12 @@ import { createWorkspaceSchema } from "../schemas";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DottedSeparator } from '@/components/dotted-separator';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl,FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useCreateWorkspace } from '../api/use-create-workspace';
+
+import { ImageIcon } from 'lucide-react';
 
 
 interface CreateWorkspaceFormProps {
@@ -19,6 +24,8 @@ interface CreateWorkspaceFormProps {
 
 export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
   const { mutate, isPending } = useCreateWorkspace();
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<z.infer<typeof createWorkspaceSchema>>({
     resolver: zodResolver(createWorkspaceSchema),
@@ -31,6 +38,13 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
     console.log({ values });
     mutate({ json: values});
   };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if(file) {
+      form.setValue("image", file)
+    }
+  }
 
   return (
     <Card className='bg-red-200 w-full h-full border-none shadow-none'>
@@ -60,6 +74,57 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                     </FormControl>
                     <FormMessage />
                   </FormItem>
+                )}
+              />
+              <FormField 
+                control={form.control}
+                name='image'
+                render={({field}) => (
+                  <div className='flex flex-col gap-y-6'>
+                    <div className="flex items-center gap-x-10">
+                      {field.value ? (
+                        <div className='size-[80px] relative rounded-md overflow-hidden'>
+                          <Image
+                            src={field.value instanceof File 
+                              ? URL.createObjectURL(field.value)
+                              : field.value
+                            }
+                            alt='logo'
+                            className='object-cover'
+                            fill
+                          />
+                        </div>
+                      ): (
+                        <Avatar className='size-[80px]'>
+                          <AvatarFallback>
+                            <ImageIcon className='size-[40px] text-blue-600 font-bold'/>
+                          </AvatarFallback>
+                        </Avatar>
+                      )}
+                      <div className="flex flex-col">
+                        <p className='text-sm'>Workspace Icon</p>
+                        <p className='text-sm text-muted-foreground'>JPG, JPEG, PNG, or SVG | max 1mb</p>
+                        <Input 
+                          className='hidden'
+                          type='file'
+                          accept='.jpg, .jpeg, .png, .svg'
+                          ref={inputRef}
+                          disabled={isPending}
+                          onChange={handleImageChange}
+                        />
+                        <Button 
+                          type='button'
+                          disabled={isPending}
+                          variant='mystery'
+                          size='xs'
+                          className='w-fil mt-2'
+                          onClick={() => inputRef.current?.click()}
+                        >
+                          Upload Image
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 )}
               />
             </div>
