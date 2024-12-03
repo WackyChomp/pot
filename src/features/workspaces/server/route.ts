@@ -12,14 +12,14 @@ import { sessionMiddleware } from '@/lib/session-middleware';
 const app = new Hono()
   .post(
     '/',
-    zValidator('json', createWorkspaceSchema),
+    zValidator('form', createWorkspaceSchema),      // 'json' doesn't work
     sessionMiddleware,
     async (c) => {
       const databases = c.get('databases');
       const user = c.get('user');
       const storage = c.get('storage');
 
-      const { name, image } = c.req.valid('json');
+      const { name, image } = c.req.valid('form');
 
       let uploadedImageUrl: string | undefined;
       if (image instanceof File){
