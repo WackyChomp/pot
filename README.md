@@ -25,6 +25,27 @@
 </div>
 
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#"></a></li>
+  </ol>
+</details>
+
+
+<!-- ABOUT -->
+## About The Project
+Sometimes life is full of goals whether it be menial or ambitious. There must be a way to keep track of it all!
+<br/><br/>
+Look no further with ⏰<u><b>P</b></u>rojects <u><b>O</b></u>n <u><b>T</b></u>ime⏰.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- BUILT WITH -->
 ## Built With
