@@ -56,6 +56,7 @@ Here are some frameworks/libraries used in this project:
 * [![Next][Next.js]][Next-url]
 * [![Appwrite][Appwrite]][Appwrite-url]
 * [![Hono][Hono]][Hono-url]
+* <b>Use node version is ^20</b>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

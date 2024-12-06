@@ -39,7 +39,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
 
     const finalValues = {
       ...values,
-      image: values.image instanceof File ? values.image : "",
+      image: values.image_input instanceof File ? values.image_input : "",
     };
 
     mutate({ form: finalValues});
@@ -48,7 +48,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if(file) {
-      form.setValue("image", file)
+      form.setValue("image_input", file)
     }
   }
 
@@ -84,7 +84,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
               />
               <FormField 
                 control={form.control}
-                name='image'
+                name='image_input'
                 render={({field}) => (
                   <div className='flex flex-col gap-y-6'>
                     <div className="flex items-center gap-x-10">

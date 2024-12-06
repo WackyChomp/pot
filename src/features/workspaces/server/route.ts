@@ -19,14 +19,14 @@ const app = new Hono()
       const user = c.get('user');
       const storage = c.get('storage');
 
-      const { name, image } = c.req.valid('form');
+      const { name, image_input } = c.req.valid('form');
 
       let uploadedImageUrl: string | undefined;
-      if (image instanceof File){
+      if (image_input instanceof File){
         const file = await storage.createFile(
           IMAGES_BUCKET_ID,
           ID.unique(),
-          image,
+          image_input,
         );
 
         const arrayBuffer = await storage.getFilePreview(
