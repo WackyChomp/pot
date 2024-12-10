@@ -42,7 +42,13 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
       image: values.image_input instanceof File ? values.image_input : "",
     };
 
-    mutate({ form: finalValues});
+    mutate({ form: finalValues}, {
+      onSuccess: () =>{
+        form.reset();               // reset form after creating workspace
+
+        // redirect to workspace (WIP)
+      }
+    });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
