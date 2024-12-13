@@ -2,7 +2,8 @@ import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 import { ID } from 'node-appwrite';
 
-import { DATABASE_ID, IMAGES_BUCKET_ID, WORKSPACES_ID } from '@/config';
+import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/config';
+import { MemberRole } from '@/features/members/types';
 
 import { createWorkspaceSchema } from '../schemas';
 
@@ -56,6 +57,17 @@ const app = new Hono()
           userId: user.$id,
           imageUrl: uploadedImageUrl,
         },
+      );
+
+      await databases.createDocument(
+        DATABASE_ID,
+        MEMBERS_ID,
+        ID.unique(),
+        {
+          userId: user.$id,
+          workspaceId: workspace.$id,
+          ROLE: MemberRole.ADMIN,
+        }
       )
 
       return c.json({ data:workspace });
