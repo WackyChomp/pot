@@ -61,6 +61,33 @@ Here are some frameworks/libraries used in this project:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Folder Structure
+General overview of folder/files
+```
+|-- public/
+|-- src/
+  |-- app/
+    |-- (auth)
+      |-- sign-in
+      |-- sign-up
+      |-- layout.tsx
+    |-- (dashboard)
+      |-- layout.tsx
+      |-- page.tsx
+    |--api
+      |-- [[...route]]
+  |-- components/
+    |-- ui        <-- shadcn-ui components -->
+    |--           <-- components I created -->
+  |-- features/
+  |-- lib/
+    |-- appwrite.ts
+    |-- rpc.ts
+    |-- session-middleware.ts
+    |-- utils.ts
+```
+
+
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 <div align="center">🌟🤗🌟</div>
@@ -96,3 +123,12 @@ List of incredible resources that give you inspiration or point you into a direc
 [Appwrite-url]: (https://appwrite.io/)
 [Hono]: https://img.shields.io/badge/hono-bcbcbc?style=for-the-badge&logo=hono&logoColor=orange
 [Hono-url]: https://hono.dev/
+
+
+<!--
+|--
+  |--
+    |-- 
+      |--
+        |--
+-->
