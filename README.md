@@ -50,13 +50,13 @@ Look no further with ⏰<u><b>P</b></u>rojects <u><b>O</b></u>n <u><b>T</b></u>i
 <!-- BUILT WITH -->
 ## Built With
 Here are some frameworks/libraries used in this project:
+* <b>Use node version is ^20</b>
 * [![TypeScript][TypeScript]][TypeScript-url]
 * [![Tailwind][Tailwind.css]][Tailwind-url]
 * [![React][React.js]][React-url]
 * [![Next][Next.js]][Next-url]
 * [![Appwrite][Appwrite]][Appwrite-url]
 * [![Hono][Hono]][Hono-url]
-* <b>Use node version is ^20</b>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,7 +78,7 @@ General overview of folder/files
       |-- [[...route]]
   |-- components/
     |-- ui        <-- shadcn-ui components -->
-    |--           <-- components I created -->
+    |--           <-- custom components -->
   |-- features/
   |-- lib/
     |-- appwrite.ts

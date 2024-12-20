@@ -9,7 +9,7 @@ interface ResponsiveModalProps{
   onOpenChange: (open: boolean) => void;
 }
 
-export const responsiveModal = ({ children, open, onOpenChange} : ResponsiveModalProps) => {
+export const ResponsiveModal = ({ children, open, onOpenChange} : ResponsiveModalProps) => {
   const isDesktop = useMedia('(min-width: 1024px', true)
 
   if (isDesktop){
