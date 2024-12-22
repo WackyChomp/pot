@@ -7,6 +7,7 @@ import { RiAddCircleFill } from 'react-icons/ri';
 import { WorkspaceAvatar } from '@/features/workspaces/components/WorkspaceAvatar';
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
+import useCreateWorkspaceModal from '@/features/workspaces/hooks/use-create-workspace-modal';
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -16,6 +17,7 @@ export const WorkspaceSwitcher = () => {
   const router = useRouter();
   const workspaceId = useWorkspaceId();
   const { data, data:workspaces } = useGetWorkspaces();
+  const { open } = useCreateWorkspaceModal();
 
   const onSelect = (id: string) => {
     router.push(`/workspaces/${id}`)
@@ -31,7 +33,7 @@ export const WorkspaceSwitcher = () => {
         <p className='text-xs uppercase text-red-600'>
           Switcheroo
         </p>
-        <RiAddCircleFill className='size-8 text-blue-800 cursor-pointer hover:opacity-80 transition' />
+        <RiAddCircleFill onClick={open} className='size-8 text-blue-800 cursor-pointer hover:opacity-80 transition' />
       </div>
 
       <Select onValueChange={onSelect} value={workspaceId}>
