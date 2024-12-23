@@ -31,6 +31,8 @@
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#built-with">Built With</a></li>
+    <li><a href="#folder-structure">Folder Structure</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
     <li><a href="#"></a></li>
   </ol>
@@ -86,6 +88,33 @@ General overview of folder/files
     |-- session-middleware.ts
     |-- utils.ts
 ```
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Installations
+1. Libraries and packages used
+    ```sh
+    npm install 
+    ```
+### Setup
+Quickly running locally
+1. Clone the repo
+   ```sh
+   git clone https://github.com/WackyChomp/pot.git
+   ```
+2. Install NPM packages into root directory or same directory as "<u>package.json</u>"
+   ```sh
+   npm install
+   ```
+3. Running on local computer <b>[Run this in root directory]</b>
+   ```
+   npm run dev
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- ACKNOWLEDGMENTS -->
