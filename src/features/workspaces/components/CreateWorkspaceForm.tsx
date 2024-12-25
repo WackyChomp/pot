@@ -8,6 +8,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createWorkspaceSchema } from "../schemas";
 
+import { cn } from '@/lib/utils';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DottedSeparator } from '@/components/dotted-separator';
@@ -146,21 +148,22 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
 
             <div className="flex items-center justify-between">
               <Button
-                type='submit'
-                size='lg'
-                disabled={isPending}
-              >
-                Create Workspace
-              </Button>
-              <Button
                 type='button'
                 size='lg'
                 variant='secondary'
                 onClick={onCancel}
                 disabled={isPending}
+                className={cn(!onCancel && 'invisible')}
               >
                 Cancel
               </Button>
+              <Button
+                type='submit'
+                size='lg'
+                disabled={isPending}
+              >
+                Create Workspace
+              </Button>              
             </div>
           </form>
         </Form>
